@@ -15,7 +15,7 @@ jobs:
           ls -a
           pwd
           cd ./.github/actions/setup
-          ls
+          ls -a
       - name: Setup
         uses: ./.github/actions/setup/action.yaml
       - name: Linting
