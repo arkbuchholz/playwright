@@ -1,5 +1,3 @@
-name: Lint and Type Check
-
 on:
   pull_request:
     branches:
