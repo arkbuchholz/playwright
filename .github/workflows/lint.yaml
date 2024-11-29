@@ -9,8 +9,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Setup
-        uses: arkbuchholz/playwright/.github/actions/setup@main
+        uses: ./.github/actions/setup@main
       - name: Linting
         run: npm run lint
 
@@ -20,6 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/setup@main
       - name: Type checking
         run: npm run type:check
