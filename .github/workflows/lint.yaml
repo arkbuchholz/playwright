@@ -1,0 +1,17 @@
+name: Lint
+on: [pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        uses: ./common/setup.yaml
+      - name: Linting
+        run: npm run lint
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        uses: ./common/setup.yaml
+      - name: Type checking
+        run: npm run type:check
