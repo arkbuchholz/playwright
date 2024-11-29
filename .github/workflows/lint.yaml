@@ -4,8 +4,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - run: cd ./.github
-      - run: ls -a
       - name: Setup
         uses: ./.github/workflows/common/setup.yaml
       - name: Linting
