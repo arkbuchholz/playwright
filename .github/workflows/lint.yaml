@@ -1,17 +1,23 @@
-name: Lint
-on: [pull_request]
+name: Lint and Type Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Setup
-        uses: ./.github/workflows/common/setup.yaml
+        uses: ./.github/actions/setup/action.yaml
       - name: Linting
         run: npm run lint
+
   type-check:
     runs-on: ubuntu-latest
     steps:
       - name: Setup
-        uses: ./common/setup.yaml
+        uses: ./.github/actions/setup/action.yaml
       - name: Type checking
         run: npm run type:check
