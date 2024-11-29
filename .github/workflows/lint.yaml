@@ -17,7 +17,7 @@ jobs:
           cd ./.github/actions/setup
           ls
       - name: Setup
-        uses: ./.github/actions/setup/action.yaml@fix/fix-workflow
+        uses: ./.github/actions/setup/action.yaml
       - name: Linting
         run: npm run lint
 
@@ -27,6 +27,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup
-        uses: ./.github/actions/setup/action.yaml@fix/fix-workflow
+        uses: ./.github/actions/setup/action.yaml
       - name: Type checking
         run: npm run type:check
