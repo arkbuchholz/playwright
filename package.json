@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/arkbuchholz/playwright#readme",
   "scripts": {
-    "pretest": "tsc && eslint && prettier --write .",
+    "type:check": "tsc",
+    "lint": "eslint . && prettier --write . --log-level error",
+    "pretest": "npm run type-check && npm run lint",
     "test": "playwright test",
     "prepare": "husky"
   },
