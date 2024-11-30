@@ -7,7 +7,7 @@ export default tseslint.config(
   tseslint.configs.recommended,
   eslintConfigPrettier,
   {
-    ignores: ['node_modules']
+    ignores: ['node_modules', 'playwright-report', 'test-results']
   },
   {
     languageOptions: {

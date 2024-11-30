@@ -1,4 +1,6 @@
 {
-  "*.ts": "tsc",
-  "*.{js,mjs,ts}": ["eslint", "prettier --write"]
+  "*.ts": [
+    "npm run type:check",
+    "npm run lint"
+  ]
 }
