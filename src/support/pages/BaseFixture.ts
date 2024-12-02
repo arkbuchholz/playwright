@@ -1,12 +1,22 @@
 import { test as base } from '@playwright/test';
-import { AuthPage } from './Auth/Auth.page';
+import { LoginPage } from './Login/Login.page';
 import { OnboardingAssertion } from './Onboarding/Onboarding.assertion';
+import { CalendarAssertion } from './Calendar/Calendar.assertion';
 
-export const test = base.extend({
-  auth: async ({ page }, use) => {
-    await use(new AuthPage(page));
+type BaseFixtue = {
+  Login: LoginPage;
+  Onboarding: OnboardingAssertion;
+  Calendar: CalendarAssertion;
+};
+
+export const test = base.extend<BaseFixtue>({
+  Login: async ({ page }, use) => {
+    await use(new LoginPage(page));
   },
-  onboarding: async ({ page }, use) => {
+  Onboarding: async ({ page }, use) => {
     await use(new OnboardingAssertion(page));
+  },
+  Calendar: async ({ page }, use) => {
+    await use(new CalendarAssertion(page));
   }
 });

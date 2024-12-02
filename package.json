@@ -20,9 +20,9 @@
     "type:check": "tsc && :",
     "lint": "eslint . && prettier --write . --log-level error",
     "pretest": "npm run type:check && npm run lint",
+    "prepare": "husky",
     "test": "playwright test",
-    "test:ui": "playwright test --ui",
-    "prepare": "husky"
+    "test:ui": "playwright test --ui"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
