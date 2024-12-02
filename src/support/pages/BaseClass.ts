@@ -13,7 +13,7 @@ export class BaseClass {
   }
 
   async assertURL() {
-    await this.page.waitForURL(this.slug);
+    await this.page.waitForURL1(this.slug);
     expect(this.page.url()).toBe(this.url);
   }
 }
