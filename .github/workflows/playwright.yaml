@@ -1,11 +1,11 @@
-name: Playwright
+name: Tests
 on:
   pull_request:
     branches:
       - main
 
 jobs:
-  run-tests:
+  playwright-e2e:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,6 +16,12 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npm run test
+        env:
+          BASE_URL_STAGE: ${{ secrets.BASE_URL_STAGE }}
+          BASIC_AUTH_USER: ${{ secrets.BASIC_AUTH_USER }}
+          BASIC_AUTH_PASSWORD: ${{ secrets.BASIC_AUTH_PASSWORD }}
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
