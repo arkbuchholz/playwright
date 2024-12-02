@@ -7,13 +7,18 @@ on:
 jobs:
   playwright-e2e:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup
         uses: ./.github/actions/setup
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
         env:
@@ -22,6 +27,7 @@ jobs:
           BASIC_AUTH_PASSWORD: ${{ secrets.BASIC_AUTH_PASSWORD }}
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
+
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -29,6 +35,7 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 1
+
       - name: Deploy report
         uses: peaceiris/actions-gh-pages@v4
         with:
