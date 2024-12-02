@@ -15,7 +15,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npm run test
+        run: npm run test --ignore-scripts
         env:
           BASE_URL_STAGE: ${{ secrets.BASE_URL_STAGE }}
           BASIC_AUTH_USER: ${{ secrets.BASIC_AUTH_USER }}
