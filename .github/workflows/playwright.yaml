@@ -19,6 +19,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Download previous report
+        uses: actions/download-artifact@v4
+        with:
+          name: report
+
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
         env:
