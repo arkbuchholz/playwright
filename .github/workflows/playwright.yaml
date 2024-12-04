@@ -19,12 +19,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Download previous report
-        uses: actions/download-artifact@v4
-
-      - name: Display structure of downloaded files
-        run: ls -R
-
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
         env:
@@ -38,8 +32,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: report
-          path: report/
+          name: reports
+          path: reports/
           retention-days: 1
 
       - name: Deploy report
@@ -47,4 +41,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: tests-report
-          publish_dir: report
+          publish_dir: reports

@@ -1,21 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import { OrtoniReportConfig } from 'ortoni-report';
-
-const reportConfig: OrtoniReportConfig = {
-  open: process.env.CI ? 'never' : 'always',
-  folderPath: 'report',
-  filename: 'index.html',
-  title: 'Ortoni Test Report',
-  showProject: !true,
-  projectName: 'Ortoni-Report',
-  testType: 'Release - Nov 09, 2024',
-  authorName: 'Arkadiusz Buchholz',
-  base64Image: false,
-  stdIO: false,
-  preferredTheme: 'dark'
-};
+import reporterConfig from './reporters/reporter.config.ts';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -30,7 +16,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [['ortoni-report', reportConfig]],
+  reporter: reporterConfig,
   use: {
     baseURL: process.env.BASE_URL_STAGE ?? '',
     trace: 'on-first-retry'
