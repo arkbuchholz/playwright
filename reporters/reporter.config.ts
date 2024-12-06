@@ -9,7 +9,8 @@ const reporterConfig: PlaywrightTestConfig['reporter'] = [
   htmlConfig,
   ortoniConfig,
   odhinConfig,
-  githubActionsConfig
+  githubActionsConfig,
+  ['allure-playwright']
 ];
 
 export default reporterConfig;

@@ -28,6 +28,11 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
 
+      - name: Generate Allure report
+        run: |
+          npm i -g allure-commandline
+          allure generate -o reports/allure
+
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
