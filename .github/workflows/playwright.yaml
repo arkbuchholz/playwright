@@ -43,10 +43,12 @@ jobs:
 
       - name: Push report to history branch
         run: |
+          ls reports/allure
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git fetch origin allure-history || git checkout --orphan allure-history
           git checkout allure-history
+          ls reports/allure
           rm -rf *
           cp -r ./reports/allure/history .
           git add .
