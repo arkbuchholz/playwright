@@ -19,6 +19,14 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      # - name: Retrieve Allure History
+      #   run: |
+      #     git fetch origin allure-history
+      #     git checkout allure-history
+      #     mkdir -p allure-results
+      #     cp -r history allure-results/history
+      #     git checkout main
+
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
         env:
@@ -28,12 +36,31 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
 
+      - name: Generate Allure report
+        run: |
+          npm i -g allure-commandline
+          allure generate -o reports/allure
+
+      - name: Push report to history branch
+        run: |
+          ls reports/allure
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git fetch origin allure-history || git checkout --orphan allure-history
+          git checkout allure-history
+          rm -rf *
+          ls reports/allure
+          cp -r ./reports/allure/history .
+          git add .
+          git commit -m "Update report history"
+          git push --force origin history
+
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: playwright-report
-          path: playwright-report/
+          name: reports
+          path: reports/
           retention-days: 1
 
       - name: Deploy report
@@ -41,4 +68,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: tests-report
-          publish_dir: playwright-report
+          publish_dir: reports
