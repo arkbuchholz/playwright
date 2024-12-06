@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","5761","Should sign in","firefox","Fri Dec 06 12:38:47 UTC 2024","passed","Fri Dec 06 12:38:52 UTC 2024","","login.spec.ts","",""
+"","5027","Should sign in","chromium","Fri Dec 06 12:38:41 UTC 2024","passed","Fri Dec 06 12:38:46 UTC 2024","","login.spec.ts","",""
+"","7436","Should sign in","webkit","Fri Dec 06 12:38:54 UTC 2024","passed","Fri Dec 06 12:39:01 UTC 2024","","login.spec.ts","",""
