@@ -19,6 +19,14 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Retrieve Allure History
+        run: |
+          git fetch origin allure-history
+          git checkout allure-history
+          mkdir -p allure-results
+          cp -r history allure-results/history
+          git checkout main
+
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
         env:
@@ -32,6 +40,18 @@ jobs:
         run: |
           npm i -g allure-commandline
           allure generate -o reports/allure
+
+      - name: Push report to history branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git fetch origin allure-history || git checkout --orphan allure-history
+          git checkout allure-history
+          rm -rf *
+          cp -r ./reports/allure/history .
+          git add .
+          git commit -m "Update report history"
+          git push --force origin history
 
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
