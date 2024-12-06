@@ -7,7 +7,8 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 const reporterConfig: PlaywrightTestConfig['reporter'] = [
   htmlConfig,
   ortoniConfig,
-  odhinConfig
+  odhinConfig,
+  ['@estruyf/github-actions-reporter']
 ];
 
 export default reporterConfig;
