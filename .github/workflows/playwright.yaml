@@ -25,7 +25,7 @@ jobs:
           git checkout allure-history
           mkdir -p allure-results
           cp -r ./reports/allure/history allure-results/history
-          git checkout main
+          git checkout master
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
