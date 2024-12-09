@@ -34,12 +34,13 @@ jobs:
           git checkout allure-history
           mkdir -p allure-results
           cp -r ./reports/allure/history allure-results/history || echo "No history to copy"
+          git checkout remotes/origin/main
 
           # Return to the original branch
-          ORIGINAL_BRANCH="${GITHUB_REF##*/}"
-          echo "Original branch: $ORIGINAL_BRANCH"
-          git fetch origin $ORIGINAL_BRANCH:$ORIGINAL_BRANCH || echo "Branch '$ORIGINAL_BRANCH' not found"
-          git checkout $ORIGINAL_BRANCH || echo "Failed to switch back to branch '$ORIGINAL_BRANCH'"
+          # ORIGINAL_BRANCH="${GITHUB_REF##*/}"
+          # echo "Original branch: $ORIGINAL_BRANCH"
+          # git fetch origin $ORIGINAL_BRANCH:$ORIGINAL_BRANCH || echo "Branch '$ORIGINAL_BRANCH' not found"
+          # git checkout $ORIGINAL_BRANCH || echo "Failed to switch back to branch '$ORIGINAL_BRANCH'"
 
       - name: Debug Git Branches
         run: |
@@ -61,7 +62,7 @@ jobs:
       - name: Generate Allure report
         run: |
           npm i -g allure-commandline
-          allure generate -o reports/allure
+          allure generate --clean -o reports/allure
 
       - name: Push report to history branch
         run: |
