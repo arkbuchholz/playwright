@@ -51,7 +51,7 @@ jobs:
           ls reports/allure
           git add ./reports/allure/history
           git commit -m "Update report history"
-          git push --force origin history
+          git push --force origin allure-history
 
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
