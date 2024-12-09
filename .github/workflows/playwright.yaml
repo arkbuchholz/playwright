@@ -21,7 +21,7 @@ jobs:
 
       - name: Retrieve Allure History
         run: |
-          git branch -m main
+          git checkout main
           git branch
           git fetch origin allure-history
           git checkout allure-history
