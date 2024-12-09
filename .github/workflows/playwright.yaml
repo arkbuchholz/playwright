@@ -48,10 +48,8 @@ jobs:
           git config user.email "actions@github.com"
           git fetch origin allure-history || git checkout --orphan allure-history
           git checkout allure-history
-          rm -rf *
           ls reports/allure
-          cp -r ./reports/allure/history .
-          git add .
+          git add ./reports/allure/history
           git commit -m "Update report history"
           git push --force origin history
 
