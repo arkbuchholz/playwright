@@ -19,6 +19,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Check Current Branch
+        run: |
+          echo "Full ref: $GITHUB_REF"
+          echo "Branch name: ${GITHUB_REF##*/}"
+
       - name: Retrieve Allure History
         run: |
           git checkout main
