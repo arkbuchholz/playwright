@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","5761","Should sign in","firefox","Fri Dec 06 12:38:47 UTC 2024","passed","Fri Dec 06 12:38:52 UTC 2024","","login.spec.ts","",""
-"","5027","Should sign in","chromium","Fri Dec 06 12:38:41 UTC 2024","passed","Fri Dec 06 12:38:46 UTC 2024","","login.spec.ts","",""
-"","7436","Should sign in","webkit","Fri Dec 06 12:38:54 UTC 2024","passed","Fri Dec 06 12:39:01 UTC 2024","","login.spec.ts","",""
+"","12409","Should sign in","webkit","Mon Dec 09 09:01:47 UTC 2024","passed","Mon Dec 09 09:02:00 UTC 2024","","login.spec.ts","",""
+"","6546","Should sign in","chromium","Mon Dec 09 09:01:32 UTC 2024","passed","Mon Dec 09 09:01:39 UTC 2024","","login.spec.ts","",""
+"","5323","Should sign in","firefox","Mon Dec 09 09:01:40 UTC 2024","passed","Mon Dec 09 09:01:46 UTC 2024","","login.spec.ts","",""
