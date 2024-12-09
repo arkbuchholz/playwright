@@ -21,12 +21,13 @@ jobs:
 
       - name: Retrieve Allure History
         run: |
+          git branch -m main
           git branch
           git fetch origin allure-history
           git checkout allure-history
           mkdir -p allure-results
           cp -r ./reports/allure/history allure-results/history
-          git checkout master
+          git checkout main
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
