@@ -19,13 +19,13 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # - name: Retrieve Allure History
-      #   run: |
-      #     git fetch origin allure-history
-      #     git checkout allure-history
-      #     mkdir -p allure-results
-      #     cp -r history allure-results/history
-      #     git checkout main
+      - name: Retrieve Allure History
+        run: |
+          git fetch origin allure-history
+          git checkout allure-history
+          mkdir -p allure-results
+          cp -r ./reports/allure/history allure-results/history
+          git checkout main
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
