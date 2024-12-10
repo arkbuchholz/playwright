@@ -69,10 +69,10 @@ jobs:
           ls reports/allure
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          mv reports/allure/history /tmp/history
+          mv reports/allure/history/* /tmp/history
           git checkout allure-history
           ls reports/allure
-          mv /tmp/history reports/allure/history
+          mv /tmp/history/* reports/allure/history
           git add ./reports/allure/history
           git commit -m "Update report history"
           git push --force origin allure-history
