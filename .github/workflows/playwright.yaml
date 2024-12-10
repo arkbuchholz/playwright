@@ -74,7 +74,7 @@ jobs:
 
           # Create temporary directory and verify
           mkdir -p history-backup
-          ls -ld history-backup
+          ls -ld
 
           # Move files to the temporary directory
           mv reports/allure/history/* /history-backup/
