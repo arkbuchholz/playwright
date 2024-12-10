@@ -71,10 +71,9 @@ jobs:
           git config user.email "actions@github.com"
           mkdir -p /tmp/history
           mv reports/allure/history/* /tmp/history/
-          ls /tmp/history
           git fetch origin allure-history
           git checkout allure-history
-          ls reports/allure
+          ls -ld reports/allure/history
           mv /tmp/history/* /reports/allure/history/
           git add ./reports/allure/history
           git commit -m "Update report history"
