@@ -82,8 +82,8 @@ jobs:
           echo "After moving files to /history-backup:"
           ls
           cd history-backup
+          echo "Inside history-backup:"
           ls
-          ls -l /history-backup
 
           # Recheck original directory
           echo "After moving, original directory state:"
