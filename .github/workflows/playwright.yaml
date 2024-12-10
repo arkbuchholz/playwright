@@ -79,6 +79,10 @@ jobs:
           # Move files to the temporary directory
           mv reports/allure/history/* /tmp/history/
           echo "After moving files to /tmp/history:"
+          cd /tmp
+          ls
+          cd history
+          ls
           ls -l /tmp/history
 
           # Recheck original directory
