@@ -77,22 +77,22 @@ jobs:
           ls -ld /tmp/history
 
           # Move files to the temporary directory
-          mv reports/allure/history/* /tmp/history/
-          echo "After moving files to /tmp/history:"
+          mv reports/allure/history/* /history-backup/
+          echo "After moving files to /history-backup:"
           cd /tmp
           ls
-          cd history
+          cd history-backup
           ls
-          ls -l /tmp/history
+          ls -l /history-backup
 
           # Recheck original directory
           echo "After moving, original directory state:"
-          ls -l reports/allure/history
+          ls -l reports/allure/history-backup
 
           git fetch origin allure-history
           git checkout allure-history
           ls -a
-          mv -f /tmp/history/* /reports/allure/history/
+          mv -f /history-backup/* /reports/allure/history/
           git add ./reports/allure/history
           git commit -m "Update report history"
           git push --force origin allure-history
