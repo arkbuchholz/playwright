@@ -78,7 +78,7 @@ jobs:
           ls
 
           # Move files to the temporary directory
-          mv reports/allure/history/* /history-backup/
+          mv reports/allure/history/* history-backup/
           echo "After moving files to /history-backup:"
           ls
           cd history-backup
