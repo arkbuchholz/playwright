@@ -68,9 +68,23 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          # Check initial content of history directory
+          echo "Before moving files:"
+          ls -l reports/allure/history
+
+          # Create temporary directory and verify
           mkdir -p /tmp/history
+          ls -ld /tmp/history
+
+          # Move files to the temporary directory
           mv reports/allure/history/* /tmp/history/
-          ls -a
+          echo "After moving files to /tmp/history:"
+          ls -l /tmp/history
+
+          # Recheck original directory
+          echo "After moving, original directory state:"
+          ls -l reports/allure/history
+
           git fetch origin allure-history
           git checkout allure-history
           ls -a
