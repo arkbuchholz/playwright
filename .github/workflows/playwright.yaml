@@ -69,8 +69,10 @@ jobs:
           ls reports/allure
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          git stash --include-untracked
           git checkout allure-history
           ls reports/allure
+          git stash pop
           git add ./reports/allure/history
           git commit -m "Update report history"
           git push --force origin allure-history
