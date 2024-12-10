@@ -70,16 +70,16 @@ jobs:
           git config user.email "actions@github.com"
           # Check initial content of history directory
           echo "Before moving files:"
-          ls -l reports/allure/history
+          ls reports/allure/history
 
           # Create temporary directory and verify
           mkdir -p history-backup
-          ls -ld
+          echo "After creating a directory:"
+          ls
 
           # Move files to the temporary directory
           mv reports/allure/history/* /history-backup/
           echo "After moving files to /history-backup:"
-          cd /tmp
           ls
           cd history-backup
           ls
