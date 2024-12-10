@@ -66,7 +66,6 @@ jobs:
 
       - name: Push report to history branch
         run: |
-          ls reports/allure
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           mkdir -p /tmp/history
