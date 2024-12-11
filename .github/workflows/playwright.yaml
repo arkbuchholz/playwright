@@ -89,7 +89,7 @@ jobs:
           git fetch origin allure-history
           git checkout allure-history
           ls -a
-          mv -f /history-backup/* /reports/allure/history/
+          mv -f history-backup/* /reports/allure/history/
           git add ./reports/allure/history
           git commit -m "Update report history"
           git push --force origin allure-history
