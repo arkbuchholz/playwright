@@ -85,7 +85,7 @@ jobs:
           echo "Inside history-backup:"
           ls
 
-          # git fetch origin allure-history
+          git fetch origin allure-history
           git checkout allure-history
           ls -a
           mv -f /history-backup/* /reports/allure/history/
