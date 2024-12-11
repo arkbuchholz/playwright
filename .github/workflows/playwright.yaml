@@ -25,7 +25,6 @@ jobs:
           git checkout allure-history
           mkdir -p allure-results
           cp -r reports/allure/history allure-results || echo "No history to copy"
-          ls allure-results
           git checkout remotes/origin/main
 
       - name: Run Playwright tests
