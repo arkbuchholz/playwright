@@ -1,1 +1,1 @@
-[]
+[{"uid":"f6d25dba046f5ea8","name":"Should sign in","time":{"start":1733925103242,"stop":1733925108449,"duration":5207},"status":"passed","severity":"normal"},{"uid":"c515b830928795fd","name":"Should sign in","time":{"start":1733925109795,"stop":1733925116614,"duration":6819},"status":"passed","severity":"normal"},{"uid":"d66a0f81a886b553","name":"Should sign in","time":{"start":1733925097793,"stop":1733925102601,"duration":4808},"status":"passed","severity":"normal"}]
