@@ -27,6 +27,7 @@ jobs:
           cp -r reports/allure/history allure-results || echo "No history to copy"
           git fetch origin main
           git checkout main
+          ls reports
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
