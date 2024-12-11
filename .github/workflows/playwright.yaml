@@ -28,7 +28,7 @@ jobs:
           cp -r reports/allure/history allure-results || echo "No history to copy"
           ORIGINAL_BRANCH="${GITHUB_REF##*/}"
           echo "Original branch: $ORIGINAL_BRANCH"
-          git fetch origin $ORIGINAL_BRANCH:$ORIGINAL_BRANCH || echo "Branch '$ORIGINAL_BRANCH' not found"
+          git fetch origin pull/9/merge || echo "Branch '$ORIGINAL_BRANCH' not found"
           git checkout $ORIGINAL_BRANCH || echo "Failed to switch back to branch '$ORIGINAL_BRANCH'"
           ls reports
 
