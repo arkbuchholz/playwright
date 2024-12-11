@@ -24,7 +24,7 @@ jobs:
           git fetch origin allure-history
           git checkout allure-history
           mkdir -p allure-results
-          cp -r ./reports/allure/history/* ./allure-results/history/ || echo "No history to copy"
+          cp -r reports/allure/history/* allure-results/history || echo "No history to copy"
           git checkout remotes/origin/main
 
       - name: Run Playwright tests
