@@ -36,12 +36,6 @@ jobs:
           cp -r ./reports/allure/history allure-results/history || echo "No history to copy"
           git checkout remotes/origin/main
 
-          # Return to the original branch
-          # ORIGINAL_BRANCH="${GITHUB_REF##*/}"
-          # echo "Original branch: $ORIGINAL_BRANCH"
-          # git fetch origin $ORIGINAL_BRANCH:$ORIGINAL_BRANCH || echo "Branch '$ORIGINAL_BRANCH' not found"
-          # git checkout $ORIGINAL_BRANCH || echo "Failed to switch back to branch '$ORIGINAL_BRANCH'"
-
       - name: Debug Git Branches
         run: |
           echo "Before fetching:"
@@ -64,36 +58,6 @@ jobs:
           npm i -g allure-commandline
           allure generate --clean -o reports/allure
 
-      - name: Push report to history branch
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          # Check initial content of history directory
-          echo "Before moving files:"
-          ls reports/allure/history
-
-          # Create temporary directory and verify
-          mkdir -p history-backup
-          echo "After creating a directory:"
-          ls
-
-          # Move files to the temporary directory
-          mv reports/allure/history/* history-backup/
-          echo "After moving files to /history-backup:"
-          ls
-          cd history-backup
-          echo "Inside history-backup:"
-          ls
-          cd ..
-
-          git fetch origin allure-history
-          git checkout allure-history
-          ls -a
-          mv -f ./history-backup/* ./reports/allure/history
-          git add ./reports/allure/history
-          git commit -m "Update report history"
-          git push --force origin allure-history
-
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
@@ -108,3 +72,18 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: tests-report
           publish_dir: reports
+
+      - name: Push report to history branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          mkdir -p history-backup
+          mv reports/allure/history/* history-backup/
+
+          git fetch origin allure-history
+          git checkout allure-history
+          mv -f ./history-backup/* ./reports/allure/history
+          git add ./reports/allure/history
+          git commit -m "Update report history"
+          git push --force origin allure-history
