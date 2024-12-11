@@ -21,16 +21,13 @@ jobs:
 
       - name: Retrieve Allure History
         run: |
-          git branch -r
           git fetch origin allure-history
           git checkout allure-history
           mkdir -p allure-results
           cp -r reports/allure/history allure-results || echo "No history to copy"
           ORIGINAL_BRANCH="${GITHUB_REF#refs/}"
-          echo "Original branch: $ORIGINAL_BRANCH"
           git fetch origin $ORIGINAL_BRANCH || echo "Branch '$ORIGINAL_BRANCH' not found"
           git checkout $ORIGINAL_BRANCH || echo "Failed to switch back to branch '$ORIGINAL_BRANCH'"
-          ls reports
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
@@ -65,10 +62,8 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-
           mkdir -p history-backup
           mv reports/allure/history/* history-backup/
-
           git fetch origin allure-history
           git checkout allure-history
           mv -f ./history-backup/* ./reports/allure/history
