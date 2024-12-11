@@ -84,6 +84,7 @@ jobs:
           cd history-backup
           echo "Inside history-backup:"
           ls
+          cd ..
 
           git fetch origin allure-history
           git checkout allure-history
