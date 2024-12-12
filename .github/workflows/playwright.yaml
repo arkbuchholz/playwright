@@ -61,7 +61,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: $REPORT_BRANCH
+          publish_branch: ${{ env.REPORT_BRANCH }}
           publish_dir: $REPORTS_DIR
 
       - name: Push report to history branch
