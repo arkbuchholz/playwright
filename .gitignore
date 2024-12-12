@@ -5,3 +5,8 @@ node_modules/
 /playwright/.cache/
 .DS_Store
 .env
+reports/*
+!reports/index.html
+!reports/style.css
+allure-report
+allure-results
