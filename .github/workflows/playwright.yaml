@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      HISTORY_BRANCH: allure-history
+      REPORT_BRANCH: tests-report
+      RESULTS_DIR: allure-results
+      REPORTS_DIR: reports
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,13 +27,13 @@ jobs:
 
       - name: Retrieve Allure History
         run: |
-          # git fetch origin allure-history
-          git checkout allure-history
-          mkdir -p allure-results
-          cp -r reports/allure/history allure-results || echo "No history to copy"
+          git fetch origin $HISTORY_BRANCH
+          git checkout $HISTORY_BRANCH
+          mkdir -p $RESULTS_DIR
+          cp -r $REPORTS_DIR/allure/history $RESULTS_DIR
           ORIGINAL_BRANCH="${GITHUB_REF#refs/}"
-          # git fetch origin $ORIGINAL_BRANCH || echo "Branch '$ORIGINAL_BRANCH' not found"
-          git checkout $ORIGINAL_BRANCH || echo "Failed to switch back to branch '$ORIGINAL_BRANCH'"
+          git fetch origin $ORIGINAL_BRANCH
+          git checkout $ORIGINAL_BRANCH
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
@@ -41,33 +47,32 @@ jobs:
       - name: Generate Allure report
         run: |
           npm i -g allure-commandline
-          allure generate --clean -o reports/allure
+          allure generate --clean -o $REPORTS_DIR/allure
 
       - name: Upload report to artifacts
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: reports
-          path: reports/
+          name: $REPORTS_DIR
+          path: $REPORTS_DIR/
           retention-days: 1
 
       - name: Deploy report
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: tests-report
-          publish_dir: reports
+          publish_branch: $REPORT_BRANCH
+          publish_dir: $REPORTS_DIR
 
       - name: Push report to history branch
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-
           mkdir -p history-backup
-          mv reports/allure/history/* history-backup/
-          # git fetch origin allure-history
-          git checkout allure-history
-          mv -f ./history-backup/* ./reports/allure/history
-          git add ./reports/allure/history
+          mv $REPORTS_DIR/allure/history/* history-backup/
+          git fetch origin $HISTORY_BRANCH
+          git checkout $HISTORY_BRANCH
+          mv -f ./history-backup/* ./$REPORTS_DIR/allure/history
+          git add ./$REPORTS_DIR/allure/history
           git commit -m "Update report history"
-          git push --force origin allure-history
+          git push --force origin $HISTORY_BRANCH
