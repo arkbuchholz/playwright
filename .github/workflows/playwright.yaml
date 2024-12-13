@@ -29,12 +29,13 @@ jobs:
         run: |
           git fetch origin $HISTORY_BRANCH
           git checkout $HISTORY_BRANCH
-          mkdir -p $RESULTS_DIR
+          mkdir -p $RESULTS_DIR ortoni-history
           cp -r $REPORTS_DIR/allure/history $RESULTS_DIR
-          cp -r $REPORTS_DIR/ortoni $REPORTS_DIR/ortoni
+          cp -r $REPORTS_DIR/ortoni ortoni-history
           ORIGINAL_BRANCH="${GITHUB_REF#refs/}"
           git fetch origin $ORIGINAL_BRANCH
           git checkout $ORIGINAL_BRANCH
+          mv -f  ./ortoni-history/* $REPORTS_DIR/ortoni
 
       - name: Run Playwright tests
         run: npm run test --ignore-scripts
