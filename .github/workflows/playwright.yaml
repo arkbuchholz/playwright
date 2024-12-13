@@ -68,11 +68,14 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          mkdir -p history-backup
+          mkdir -p history-backup ortoni-backup
           mv $REPORTS_DIR/allure/history/* history-backup/
+          mv $REPORTS_DIR/ortoni/ortoni-data-history.sqlite ortoni-backup/
           git fetch origin $HISTORY_BRANCH
           git checkout $HISTORY_BRANCH
           mv -f ./history-backup/* ./$REPORTS_DIR/allure/history
+          mv -f ./ortoni-backup/* ./$REPORTS_DIR/ortoni
           git add ./$REPORTS_DIR/allure/history
+          git add ./$REPORTS_DIR/ortoni/ortoni-data-history.sqlite
           git commit -m "Update report history"
           git push --force origin $HISTORY_BRANCH
