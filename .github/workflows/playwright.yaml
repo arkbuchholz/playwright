@@ -53,8 +53,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: $REPORTS_DIR
-          path: $REPORTS_DIR/
+          name: ${{ env.REPORTS_DIR }}
+          path: ${{ env.REPORTS_DIR }}
           retention-days: 1
 
       - name: Deploy report
@@ -62,7 +62,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: ${{ env.REPORT_BRANCH }}
-          publish_dir: $REPORTS_DIR
+          publish_dir: ${{ env.REPORTS_DIR }}
 
       - name: Push report to history branch
         run: |
