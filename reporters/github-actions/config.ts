@@ -5,7 +5,9 @@ const config: ReporterDescription = [
   '@estruyf/github-actions-reporter',
   <GitHubActionOptions>{
     useDetails: true,
-    showError: true
+    showError: true,
+    showAnnotations: true,
+    showTags: true
   }
 ];
 
