@@ -1,7 +1,11 @@
 node_modules/
 /test-results/
-/playwright-report/
-/blob-report/
 /playwright/.cache/
 .DS_Store
 .env
+
+# Reports
+reports/*
+!reports/index.html
+!reports/style.css
+allure-results

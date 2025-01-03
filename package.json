@@ -29,13 +29,19 @@
     "@playwright/test": "^1.49.0",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.10.1",
+    "allure-playwright": "^3.0.7",
     "dotenv": "^16.4.5",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
+    "odhin-reports-playwright": "1.0.6",
     "prettier": "3.4.1",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.16.0"
+  },
+  "dependencies": {
+    "@estruyf/github-actions-reporter": "^1.9.2",
+    "ortoni-report": "^2.0.8"
   }
 }
