@@ -57,7 +57,7 @@ jobs:
         with:
           name: ${{ env.REPORTS_DIR }}
           path: ${{ env.REPORTS_DIR }}
-          retention-days: 1
+          retention-days: 7
 
       - name: Deploy report
         uses: peaceiris/actions-gh-pages@v4
