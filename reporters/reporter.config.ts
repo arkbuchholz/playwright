@@ -9,7 +9,7 @@ const reporterConfig: PlaywrightTestConfig['reporter'] = [
   htmlConfig,
   ortoniConfig,
   odhinConfig,
-  githubActionsConfig,
+  process.env.CI ? githubActionsConfig : ['list'],
   ['allure-playwright']
 ];
 
